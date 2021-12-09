@@ -20,7 +20,7 @@ class Expense extends Migration
             $table->boolean('PAIDOUT');
             $table->integer('NUMBERINSTALLMENTS');
             $table->double('VALUE', 8, 2);
-            $table->unsignedInteger('IDTYPEEXPENSE')->nullable();
+            $table->unsignedInteger('IDTYPEEXPENSE');
             $table->unsignedInteger('IDTYPEPAYMENT')->nullable();
 
             $table->foreign('IDTYPEEXPENSE')->references('ID')->on('TYPEEXPENSE');
