@@ -7,7 +7,7 @@ docker-compose up -d
 
 Acessar o container
 ```sh
-docker-compose exec curso_x bash
+docker-compose exec f_planning bash
 ```
 
 
