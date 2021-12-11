@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Exception;
 
 use App\Services\InputService;
 use App\Http\Requests\Api\CreateInputRequest;
@@ -38,8 +39,12 @@ class InputController extends Controller
      */
     public function create(CreateInputRequest $request)
     {
-        $datas = $request->all();
-        return new InputResource($this->inputService->create($datas));
+        try {
+            $datas = $request->all();
+            return new InputResource($this->inputService->create($datas));
+        } catch (Exception $e) {
+            throw new Exception($e->getMessage(), $e->getCode());
+        }
     }
 
     /**
@@ -51,7 +56,11 @@ class InputController extends Controller
      */
     public function all()
     {
-        return InputResource::collection($this->inputService->all());
+        try {
+            return InputResource::collection($this->inputService->all());
+        } catch (Exception $e) {
+            throw new Exception($e->getMessage(), $e->getCode());
+        }
     }
 
     /**
@@ -64,8 +73,12 @@ class InputController extends Controller
      */
     public function findById(IdRequest $request)
     {
-        $id = $request->input('id');
-        return new InputResource($this->inputService->findById($id));
+        try {
+            $id = $request->input('id');
+            return new InputResource($this->inputService->findById($id));
+        } catch (Exception $e) {
+            throw new Exception($e->getMessage(), $e->getCode());
+        }
     }
     
     /**
@@ -78,8 +91,12 @@ class InputController extends Controller
      */
     public function update(UpdateInputRequest $request)
     {
-        $datas = $request->all();
-        return new InputResource($this->inputService->update($datas));
+        try {
+            $datas = $request->all();
+            return new InputResource($this->inputService->update($datas));
+        } catch (Exception $e) {
+            throw new Exception($e->getMessage(), $e->getCode());
+        }
     }
 
     /**
@@ -92,8 +109,12 @@ class InputController extends Controller
      */
     public function deleteById(IdRequest $request)
     {
-        $id = $request->input('id');
-        return $this->inputService->deleteById($id);
+        try {
+            $id = $request->input('id');
+            return $this->inputService->deleteById($id);
+        } catch (Exception $e) {
+            throw new Exception($e->getMessage(), $e->getCode());
+        }
     }
 }
 

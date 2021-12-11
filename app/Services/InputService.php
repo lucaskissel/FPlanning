@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use Illuminate\Http\Request;
+use Exception;
 
 use App\Repositories\InputRepository;
 
@@ -48,7 +49,12 @@ class InputService
      */
     public function all()
     {
-        return $this->inputRepository->all();
+        $datas = $this->inputRepository->all();
+        if($datas->isEmpty()) {
+            throw new Exception("No data found", 404);
+        } else {
+            return $datas;
+        }
     }
 
     /**
@@ -88,6 +94,6 @@ class InputService
      */
     public function deleteById($id)
     {
-        return $this->inputRepository->delete($id);
+        return $this->inputRepository->delete($id);        
     }
 }
