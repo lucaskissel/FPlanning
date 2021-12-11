@@ -2,6 +2,7 @@
 
 namespace App\Exceptions;
 
+use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Throwable;
 
@@ -34,8 +35,16 @@ class Handler extends ExceptionHandler
      */
     public function register()
     {
-        $this->reportable(function (Throwable $e) {
-            //
+        $this->renderable(function (Exception $exception, $request) {
+            $result = [
+                'sucess'   => false,
+                'message'  => $exception->getMessage()
+            ];
+            $status = $exception->getCode();
+            if(empty($status)) {
+                $status = 400;
+            }
+            return response()->json($result, $status);
         });
     }
 }

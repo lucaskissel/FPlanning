@@ -16,7 +16,8 @@ class Input extends Migration
         Schema::create('INPUT', function (Blueprint $table) {
             $table->increments('ID');
             $table->string('SOURCE');
-            $table->double('VALUE', 8, 2);
+            $table->string('DESCRIPTION');
+            $table->float('VALUE', 8, 2);
             $table->dateTime('INPUTDATE');
         });
     }
