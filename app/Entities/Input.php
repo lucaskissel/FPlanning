@@ -9,19 +9,17 @@ use Illuminate\Database\Eloquent\Model;
  *
  * @package namespace App\Entities;
  */
-class Expense extends Model
+class Input extends Model
 {
-    protected $table = 'EXPENSE';
+    protected $table = 'INPUT';
+    protected $primaryKey = 'ID';
 
     protected $fillable = [
         'ID',
-        'DUEDATE',
-        'PAYDAY',
-        'PAIDOUT',
-        'NUMBERINSTALLMENTS',
+        'SOURCE',
+        'DESCRIPTION',
         'VALUE',
-        'IDTYPEEXPENSE',
-        'IDTYPEPAYMENT',
+        'INPUTDATE',
     ];
 
     public $timestamps = false;
