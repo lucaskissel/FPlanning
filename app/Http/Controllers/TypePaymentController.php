@@ -4,39 +4,39 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\Services\TypePaymentService;
-use App\Http\Requests\Api\CreateTypePaymentRequest;
-use App\Http\Resources\TypePaymentResource;
+use App\Services\InputService;
+use App\Http\Requests\Api\CreateInputRequest;
+use App\Http\Resources\InputResource;
 
-class TypePaymentController extends Controller
+class InputController extends Controller
 {
     /**
-     * @name typePaymentService
+     * @name inputService
      * @access private 
-     * @var typePaymentService
+     * @var inputService
      */
-    private $typePaymentService;
+    private $inputService;
 
     /**
-     * TypePaymentController Constructor
-     * @param TypePaymentService $typePaymentService
+     * InputController Constructor
+     * @param InputService $inputService
      */
-    public function __construct(TypePaymentService $typePaymentService)
+    public function __construct(InputService $inputService)
     {
-        $this->typePaymentService = $typePaymentService;
+        $this->inputService = $inputService;
     }
 
     /**
-     * @Post("typeExpense")
+     * @Post("input")
      * 
-     * Create a new type expense
+     * Create a new Input
      * 
-     * @param CreateTypeExpenseRequest $request
+     * @param CreateInputRequest $request
      * @return mixed
      */
-    public function create(CreateTypePaymentRequest $request)
+    public function create(CreateInputRequest $request)
     {
         $datas = $request->all();
-        return new TypePaymentResource($this->typePaymentService->create($datas));
+        return new InputResource($this->inputService->create($datas));
     }
 }
